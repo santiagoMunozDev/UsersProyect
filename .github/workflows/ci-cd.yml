@@ -43,10 +43,10 @@ jobs:
           dotnet-version: '8.0.x'  # Asegurate que esta versión existe (te ayudo abajo)
 
       - name: 📦 Restore dependencias Front
-        run: dotnet restore ./FrontUsers/FrontUsers.csproj
+        run: dotnet restore ./Users-Front/Users-Front.csproj
 
       - name: 🛠️ Build Front
-        run: dotnet build ./FrontUsers/FrontUsers.csproj --no-restore
+        run: dotnet build ./Users-Front/FUsers-Front.csproj --no-restore
 
       - name: ✅ Test Front (si tenés tests)
-        run: dotnet test ./FrontUsers/FrontUsers.csproj --no-build --verbosity normal
+        run: dotnet test ./Users-Front/Users-Front.csproj --no-build --verbosity normal
