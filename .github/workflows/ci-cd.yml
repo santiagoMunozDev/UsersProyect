@@ -18,7 +18,7 @@ jobs:
       - name: 🧰 Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.23'  # Cambialo si es incorrecto
+          dotnet-version: '8.0.x'  # Cambialo si es incorrecto
 
       - name: 📦 Restore dependencias
         run: dotnet restore ./ApiUsers/UsersApi.csproj
@@ -40,7 +40,7 @@ jobs:
       - name: 🧰 Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.23'  # Asegurate que esta versión existe (te ayudo abajo)
+          dotnet-version: '8.0.x'  # Asegurate que esta versión existe (te ayudo abajo)
 
       - name: 📦 Restore dependencias Front
         run: dotnet restore ./FrontUsers/FrontUsers.csproj
