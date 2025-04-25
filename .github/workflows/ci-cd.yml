@@ -46,7 +46,7 @@ jobs:
         run: dotnet restore ./Users-Front/Users-Front.csproj
 
       - name: 🛠️ Build Front
-        run: dotnet build ./Users-Front/FUsers-Front.csproj --no-restore
+        run: dotnet build ./Users-Front/Users-Front.csproj --no-restore
 
       - name: ✅ Test Front (si tenés tests)
         run: dotnet test ./Users-Front/Users-Front.csproj --no-build --verbosity normal
