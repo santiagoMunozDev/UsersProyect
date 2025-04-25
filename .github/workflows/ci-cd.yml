@@ -18,7 +18,7 @@ jobs:
       - name: 🧰 Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  # Cambialo si es incorrecto
+          dotnet-version: '8.0.x'
 
       - name: 📦 Restore dependencias
         run: dotnet restore ./ApiUsers/UsersApi.csproj
@@ -26,27 +26,22 @@ jobs:
       - name: 🛠️ Build API
         run: dotnet build ./ApiUsers/UsersApi.csproj --no-restore
 
-      - name: ✅ Test API (si tenés tests)
+      - name: ✅ Test API
         run: dotnet test ./ApiUsers/UsersApi.csproj --no-build --verbosity normal
 
   build-front:
-    name: 🌐 Build Front .NET
-    runs-on: ubuntu-latest
+    name: 🌐 Build Front .NET Framework
+    runs-on: windows-latest
 
     steps:
       - name: 📥 Checkout repo
         uses: actions/checkout@v3
 
-      - name: 🧰 Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'  # Asegurate que esta versión existe (te ayudo abajo)
+      - name: 🧰 Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
 
       - name: 📦 Restore dependencias Front
-        run: dotnet restore ./Users-Front/Users-Front.csproj
+        run: nuget restore ./Users-Front/Users-Front.sln
 
       - name: 🛠️ Build Front
-        run: dotnet build ./Users-Front/Users-Front.csproj --no-restore
-
-      - name: ✅ Test Front (si tenés tests)
-        run: dotnet test ./Users-Front/Users-Front.csproj --no-build --verbosity normal
+        run: msbuild ./Users-Front/Users-Front.sln /p:Configuration=Release
