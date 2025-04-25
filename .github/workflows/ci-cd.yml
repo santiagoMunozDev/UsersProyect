@@ -1,0 +1,53 @@
+name: CI/CD - API y Front
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-api:
+    name: 🔧 Build API .NET
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repo
+      uses: actions/checkout@v3
+
+    - name: 🧰 Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.23' # Cambialo según tu versión
+
+    - name: 📦 Restore dependencias
+      run: dotnet restore ./ApiUsers/UsersApi.csproj
+
+    - name: 🛠️ Build API
+      run: dotnet build ./ApiUsers/UsersApi.csproj --no-restore
+
+    - name: ✅ Test API (si tenés tests)
+      run: dotnet test ./ApiUsers/UsersApi.csproj --no-build --verbosity normal
+
+
+   build-front:
+    name: 🌐 Build Front .NET
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repo
+      uses: actions/checkout@v3
+
+    - name: 🧰 Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.23' # Cambialo según la versión de FrontUsers
+
+    - name: 📦 Restore dependencias Front
+      run: dotnet restore ./FrontUsers/FrontUsers.csproj
+
+    - name: 🛠️ Build Front
+      run: dotnet build ./FrontUsers/FrontUsers.csproj --no-restore
+
+    - name: ✅ Test Front (si tenés tests)
+      run: dotnet test ./FrontUsers/FrontUsers.csproj --no-build --verbosity normal
