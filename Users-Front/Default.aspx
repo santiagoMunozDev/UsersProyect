@@ -35,7 +35,7 @@
                 <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Registro de Usuario</h3>
+                            <h3>Registro de Usuarios</h3>
                         </div>
                         <div class="card-body">
                             <asp:HiddenField ID="hdnUserId" runat="server" Value="0" />
